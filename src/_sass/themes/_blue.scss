@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Blue Theme
+   ========================================================================== */
+
+.t-blue {
+
+  .mat-toolbar {
+    background: $blue-500;
+  }
+
+  .c-article__main a:not(.c-btn) {
+    color: $blue-500;
+  }
+
+  .c-footer a {
+    color: $blue-500;
+  }
+
+  .c-footer {
+    background: $blue-500;
+  }
+}

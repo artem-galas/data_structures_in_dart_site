@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Grey Theme
+   ========================================================================== */
+
+.t-purple {
+
+  .mat-toolbar {
+    background: $purple-700;
+  }
+
+  .c-article__main a:not(.c-btn) {
+    color: $purple-700;
+  }
+
+  .c-footer a {
+    color: $purple-700;
+  }
+
+  .c-footer {
+    background: $purple-700;
+  }
+}

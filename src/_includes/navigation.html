@@ -1,0 +1,26 @@
+<nav class="mat-toolbar">
+  <div class="mat-toolbar-row">
+    <div class="navigation-menu">
+      <ul>
+        <li>
+          <a class="nav-link {% if page.url == '/' %}is-active{% endif %}"
+             href="{{ "/" | prepend: site.baseurl }}">
+            <span class="nav-link-inner">Home</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link {% if page.url == '/articles/' %}is-active{% endif %}"
+             href="{{ "/articles/" | prepend: site.baseurl }}">
+            <span class="nav-link-inner">Articles</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link {% if page.url == '/about/' %}is-active{% endif %}"
+             href="{{ "/about/" | prepend: site.baseurl }}">
+            <span class="nav-link-inner">About</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

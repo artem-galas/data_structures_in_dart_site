@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html class="t-{{ site.themeColor }}">
+{% include head.html %}
+<body>
+  <div class="main-container">
+    {% include navigation.html %}
+
+    <div class="main-container-inner">
+      {{ content }}
+    </div>
+
+    {% include footer.html %}
+  </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+// Syntax highlighting styles
+
+$generic-output-color: white;
+
+.language-console .highlight {
+  @include console-base;
+  .go { color: $generic-output-color; } /* Generic.Output */
+}
+
+pre.console-output {
+  @include console-base($generic-output-color)
+}
+
+// `terminal` is like `console` with prompts and output colored differently
+.language-terminal .highlight {
+  @include console-base;
+  .gp { color: $grey-500; } /* Generic.Prompt */
+  .go { color: $generic-output-color; } /* Generic.Output */
+  .nb, .nt { color: #7CB342; } /* Name.Builtin */
+  .nv { color: #03bbbb; }
+  .o { color: $grey-500; font-weight: bold; } /* Operator */
+  .sb { color: #f56b78; }
+}
+
+figure.highlight, pre.highlight {
+  padding: 20px;
+  @include ff--mono;
+}
+
+.highlighter-rouge {
+  color: #1FBAAC;
+  font-size: 16px;
+}
+
+.highlight {
+  font-size: 16px;
+  background-color: #eeeeee;
+  position: relative;
+
+
+  /* Literal.String.* */
+  .s, .s1, .s2, .sb,
+  .sc, .sd, .se, .sh,
+  .si, .sx, .sr, .ss {
+    color: #1b87c9;
+  }
+
+  /* Keyword.* */
+  .k, .kc, .kd, .kn, .kp, .kr, .kt {
+    color: #1FBAAC;
+  }
+  /* Punctuation */
+  .p {
+    color: #222;
+  }
+  /* Comment */
+  .c, .c1, .cm, .cp, .cs {
+    font-style: italic;
+    color: #999999;
+  }
+  /* Literal */
+  .l {
+    color: #066;
+  }
+  /* Operator */
+  .o {
+    color: #222
+  }
+  /* Name */
+  .n {
+    color: #606;
+  }
+}

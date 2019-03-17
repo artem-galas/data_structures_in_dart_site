@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Grey Theme
+   ========================================================================== */
+
+.t-orange {
+
+  .mat-toolbar {
+    background: $amber-900;
+  }
+
+  .c-article__main a:not(.c-btn) {
+    color: $amber-900;
+  }
+
+  .c-footer a {
+    color: $amber-900;
+  }
+
+  .c-footer {
+    background: $amber-900;
+  }
+}

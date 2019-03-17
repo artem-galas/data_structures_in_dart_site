@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Green Theme
+   ========================================================================== */
+
+.t-green {
+
+  .mat-toolbar {
+    background: $green-500;
+  }
+
+  .c-article__main a:not(.c-btn) {
+    color: $green-500;
+  }
+
+  .c-footer a {
+    color: $green-500;
+  }
+
+  .c-footer {
+    background: $green-500;
+  }
+}

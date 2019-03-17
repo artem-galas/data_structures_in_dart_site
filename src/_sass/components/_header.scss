@@ -1,0 +1,23 @@
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+$base-padding: 2.5em;
+
+.c-header {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  background: $t-theme;
+}
+
+.c-header__title {
+  position: relative;
+  @include ff--sans-serif(300);
+  @include fs--title;
+  color: $c__white;
+
+  span {
+    color: rgba(#fff, .5);
+  }
+}

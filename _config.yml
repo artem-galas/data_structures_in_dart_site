@@ -1,0 +1,35 @@
+title: Data Structures and Algorithms in Dart
+email: artem.galas@gmail.com
+baseurl: ""
+url: ""
+github_username:  artem-galas
+repo: 
+  this: https://github.com/artem-galas/data_structures_in_dart
+branch: master
+port: 4000  
+
+collections:
+  articles:
+    output: true
+    permalink: /articles/:path
+
+
+# Build settings
+markdown: kramdown
+source: src
+
+fixedNav: 'true'
+sass:
+  style: compressed
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
