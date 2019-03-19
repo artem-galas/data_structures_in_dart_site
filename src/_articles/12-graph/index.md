@@ -20,6 +20,6 @@ to be interesting ones—a graph is indispensable.
 {% assign articles = site.articles | where:"category","graph" %}
 <ol>
     {% for post in articles %}
-      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
     {% endfor %}
 </ol>

@@ -16,6 +16,6 @@ They’re slightly less efficient than red-black trees but easier to program. **
 {% assign articles = site.articles | where:"category","tree-2-3-4" %}
 <ol>
     {% for post in articles %}
-      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
     {% endfor %}
 </ol>

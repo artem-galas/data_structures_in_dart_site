@@ -22,6 +22,6 @@ the general-purpose sorts.
 {% assign articles = site.articles | where:"category","sorting" %}
 <ol>
     {% for post in articles %}
-      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
     {% endfor %}
 </ol>

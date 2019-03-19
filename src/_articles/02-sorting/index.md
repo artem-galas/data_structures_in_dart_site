@@ -15,7 +15,7 @@ nextpage:
 {% assign articles = site.articles | where:"category","simple_sorting" %}
 <ol>
     {% for post in articles %}
-      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
     {% endfor %}
 </ol>
 
@@ -24,6 +24,6 @@ nextpage:
 <ol>
     {% for post in articles %}
         {% assign title = post.title | split:"| " %}
-      <li><a href="{{ post.url }}">{{ title.last }}</a></li>
+      <li><a href="{{ post.url | prepend: site.baseurl }}">{{ title.last }}</a></li>
     {% endfor %}
 </ol>

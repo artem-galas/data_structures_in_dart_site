@@ -15,6 +15,6 @@ They provide advantages that the data structures we’ve seen so far cannot.
 {% assign articles = site.articles | where:"category","binary-tree" %}
 <ol>
     {% for post in articles %}
-      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
     {% endfor %}
 </ol>

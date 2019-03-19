@@ -26,7 +26,7 @@ This arrangement makes possible a fast way of searching for a data item: the bin
 {% assign articles = site.articles | where:"category","array" %}
 <ol>
     {% for post in articles %}
-      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
     {% endfor %}
 </ol>
 
@@ -35,6 +35,6 @@ This arrangement makes possible a fast way of searching for a data item: the bin
 <ol>
     {% for post in articles %}
         {% assign title = post.title | split:"| " %}
-      <li><a href="{{ post.url }}">{{ title.last }}</a></li>
+      <li><a href="{{ post.url | prepend: site.baseurl }}">{{ title.last }}</a></li>
     {% endfor %}
 </ol>

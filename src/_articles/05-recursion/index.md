@@ -14,6 +14,6 @@ Recursion is a programming technique in which a method (function) calls itself.
 {% assign articles = site.articles | where:"category","recursion" %}
 <ol>
     {% for post in articles %}
-      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
     {% endfor %}
 </ol>

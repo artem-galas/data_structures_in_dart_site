@@ -17,6 +17,6 @@ In practice this is just a few machine instructions.
 {% assign articles = site.articles | where:"category","hash" %}
 <ol>
     {% for post in articles %}
-      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
     {% endfor %}
 </ol>

@@ -23,6 +23,6 @@ In fact, you can use a linked list in many cases in which you use an array, unle
 {% assign articles = site.articles | where:"category","linked-list" %}
 <ol>
     {% for post in articles %}
-      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
     {% endfor %}
 </ol>

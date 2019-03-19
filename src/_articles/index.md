@@ -10,6 +10,6 @@ Here you can find all our chapters:
 {% assign articles = site.articles | where:"category","index" %}
 <ul>
     {% for post in articles %}
-      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
     {% endfor %}
 </ul>
