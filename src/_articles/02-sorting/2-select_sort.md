@@ -5,7 +5,7 @@ category: simple_sorting
 file_path: 02_simple_sorting/select_sort.dart
 permalink: articles/simple-sorting/2-select_sort
 prevpage: 
-    url: 1-buble_sort
+    url: 1-bubble_sort
     title: Bubble Sort
 nextpage: 
     url: 3-insert_sort

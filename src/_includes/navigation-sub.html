@@ -3,12 +3,12 @@
   <ul>
     {% if page.prevpage.url %}
     <li class="previous">
-        <a href="{{ page.prevpage.url }}">{{ page.prevpage.title }}</a>
+        <a href="{{ page.prevpage.url | prepend: site.baseurl }}">{{ page.prevpage.title }}</a>
     </li>
     {% endif %}
     {% if page.nextpage.url %}
     <li class="next">
-        <a href="{{ page.nextpage.url }}">{{ page.nextpage.title }}</a>
+        <a href="{{ page.nextpage.url | prepend: site.baseurl }}">{{ page.nextpage.title }}</a>
     </li>
     {% endif %}
   </ul>
