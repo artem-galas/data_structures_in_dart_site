@@ -5,7 +5,7 @@ category: array
 file_path: 01_array/low_array.dart
 permalink: /articles/array/1-low_array
 prevpage: 
-    url: /articles/array
+    url: articles/array
     title: Array
 nextpage: 
     url: 2-high_array
