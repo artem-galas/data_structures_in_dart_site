@@ -4,7 +4,7 @@ title:  "Array | Tasks"
 category: index_array_tasks
 permalink: /articles/array/tasks
 nextpage: 
-    url: 1-task
+    url: /articles/array/tasks/1-task
     title: Task 1
 prevpage:
     url: /articles/array/4-class_data
@@ -19,6 +19,6 @@ prevpage:
 <ol>
     {% for post in articles %}
     {% assign title = post.title | split:"| " %}
-      <li><a href="{{ post.url }}">{{ title.last }}</a></li>
+      <li><a href="{{ post.url | prepend: site.baseurl }}">{{ title.last }}</a></li>
     {% endfor %}
 </ol>

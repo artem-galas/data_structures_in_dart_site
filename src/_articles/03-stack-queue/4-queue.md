@@ -5,10 +5,10 @@ category: stack-queue
 file_path: 03_stack_queue/queue.dart
 permalink: articles/stack-queue/4-queue
 prevpage: 
-    url: 3-brackets
+    url: /articles/stack-queue/3-brackets
     title: Brackets
 nextpage: 
-    url: 5-priority_queue
+    url: /articles/stack-queue/5-priority_queue
     title: Priority Queue
 ---
 

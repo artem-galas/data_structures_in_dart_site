@@ -8,7 +8,7 @@ prevpage:
     url: /articles/array
     title: Array
 nextpage: 
-    url: 2-high_array
+    url: /articles/array/2-high_array
     title: High Array
 ---
 

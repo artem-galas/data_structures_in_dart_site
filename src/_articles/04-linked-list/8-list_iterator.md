@@ -5,7 +5,7 @@ category: linked-list
 file_path: 04_linked_list/list_iterator.dart
 permalink: articles/linked-list/8-list_iterator
 prevpage: 
-    url: 7-double_linked_list
+    url: /articles/linked-list/7-double_linked_list
     title: Double Linked List
 ---
 

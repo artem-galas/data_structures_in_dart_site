@@ -5,10 +5,10 @@ category: linked-list
 file_path: 04_linked_list/double_linked_list.dart
 permalink: articles/linked-list/7-double_linked_list
 prevpage: 
-    url: 6-list_insertion_sort
+    url: /articles/linked-list/6-list_insertion_sort
     title: List Insertion Sort
 nextpage:
-    url: 8-list_iterator
+    url: /articles/linked-list/8-list_iterator
     title: List Iterator
 ---
 

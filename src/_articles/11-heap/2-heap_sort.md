@@ -5,7 +5,7 @@ category: heap
 file_path: 11_heap/heap_sort.dart
 permalink: articles/heap/2-heap_sort
 prevpage:
-  url: 1-heap
+  url: /articles/heap/1-heap
   title: Heap
 ---
 

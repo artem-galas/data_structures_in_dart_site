@@ -5,10 +5,10 @@ category: graph
 file_path: 12_graph/bfs.dart
 permalink: articles/graph/2-bfs
 prevpage:
-  url: 1-dfs
+  url: /articles/graph/1-dfs
   title: Dfs
 nextpage:
-  url: 3-mst
+  url: /articles/graph/3-mst
   title: Mst
 ---
 

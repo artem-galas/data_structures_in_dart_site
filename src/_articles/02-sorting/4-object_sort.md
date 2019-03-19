@@ -5,7 +5,7 @@ category: simple_sorting
 file_path: 02_simple_sorting/object_sort.dart
 permalink: articles/simple-sorting/4-object_sort
 prevpage: 
-    url: 3-insert_sort
+    url: /articles/simple-sorting/3-insert_sort
     title: Insert Sort
 ---
 

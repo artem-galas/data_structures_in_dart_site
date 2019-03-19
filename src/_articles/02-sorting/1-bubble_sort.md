@@ -5,10 +5,10 @@ category: simple_sorting
 file_path: 02_simple_sorting/buble_sort.dart
 permalink: articles/simple-sorting/1-bubble_sort
 prevpage: 
-    url: /articles/sorting
+    url: /articles/simple-sorting
     title: Sorting
 nextpage: 
-    url: 2-select_sort
+    url: /articles/simple-sorting/2-select_sort
     title: Select Sort
 ---
 

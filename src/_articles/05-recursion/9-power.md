@@ -5,7 +5,7 @@ category: recursion
 file_path: 05_recursion/power.dart
 permalink: articles/recursion/9-power
 prevpage:
-  url: 8-stack_triangle2
+  url: /articles/recursion/8-stack_triangle2
   title: Stack Triangle2
 ---
 

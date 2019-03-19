@@ -5,10 +5,10 @@ category: sorting
 file_path: 06_sorting/partion.dart
 permalink: articles/sorting/2-partion
 prevpage:
-  url: 1-shell_sorting
+  url: /articles/sorting/1-shell_sorting
   title: Shell Sorting
 nextpage:
-  url: 3-quick_sort1
+  url: /articles/sorting/3-quick_sort1
   title: Quick Sort1
 ---
 

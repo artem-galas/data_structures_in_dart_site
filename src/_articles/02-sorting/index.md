@@ -4,7 +4,7 @@ title:  "Simple Sorting"
 category: index
 permalink: articles/simple-sorting/
 nextpage:
-    url: 1-bubble_sort
+    url: /articles/simple-sorting/1-bubble_sort
     title: Bubble Sort
 ---
 

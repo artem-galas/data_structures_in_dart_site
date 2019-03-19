@@ -1,5 +1,11 @@
 <div class="material-button accent">
   <div class="content">
-    {{ include.name }}
+    {% if include.href %}
+      <a href="{{ include.href | prepend: site.baseurl }}">
+        {{ include.name }}
+      </a>
+    {% else %}
+      {{ include.name }}
+    {% endif %}
   </div>
 </div>

@@ -5,7 +5,7 @@ category: array_task
 permalink: /articles/array/tasks/6-task
 file_path: 01_array/tasks/task_6.dart
 prevpage: 
-    url: 5-task
+    url: /articles/array/tasks/5-task
     title: Tasks 5
 ---
 

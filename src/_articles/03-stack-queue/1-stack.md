@@ -8,7 +8,7 @@ prevpage:
     url: /articles/stack-queue
     title: Stack Queue
 nextpage: 
-    url: 2-reverse
+    url: /articles/stack-queue/2-reverse
     title: Reverse
 ---
 

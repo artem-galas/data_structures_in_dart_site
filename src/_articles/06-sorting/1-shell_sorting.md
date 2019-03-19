@@ -8,7 +8,7 @@ prevpage:
   url: /articles/sorting
   title: Sorting
 nextpage:
-  url: 2-partion
+  url: /articles/sorting/2-partion
   title: Partion
 ---
 

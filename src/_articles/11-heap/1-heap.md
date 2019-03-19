@@ -8,7 +8,7 @@ prevpage:
   url: /articles/heap
   title: Heap Index
 nextpage:
-  url: 2-heap_sort
+  url: /articles/heap/2-heap_sort
   title: Heap Sort
 ---
 

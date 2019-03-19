@@ -8,7 +8,7 @@ prevpage:
     url: /articles/linked-list
     title: Linked List Index
 nextpage:
-    url: 2-linked-list
+    url: /articles/linked-list/2-linked-list
     title: Linked List
 ---
 

@@ -8,7 +8,7 @@ prevpage:
   url: /articles/graph
   title: Graph
 nextpage:
-  url: 2-bfs
+  url: /articles/graph/2-bfs
   title: Bfs
 ---
 

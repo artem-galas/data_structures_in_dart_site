@@ -5,7 +5,7 @@ category: weighted-graph
 file_path: 13_weighted_graph/path.dart
 permalink: articles/weighted-graph/2-path
 prevpage:
-  url: 1-mstw
+  url: /articles/weighted-graph/1-mstw
   title: Mstw
 ---
 

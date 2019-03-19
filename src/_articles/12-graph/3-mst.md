@@ -5,10 +5,10 @@ category: graph
 file_path: 12_graph/mst.dart
 permalink: articles/graph/3-mst
 prevpage:
-  url: 2-bfs
+  url: /articles/graph/2-bfs
   title: Bfs
 nextpage:
-  url: 4-topo
+  url: /articles/graph/4-topo
   title: Topo
 
 ---

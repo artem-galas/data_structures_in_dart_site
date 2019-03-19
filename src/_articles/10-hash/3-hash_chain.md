@@ -5,7 +5,7 @@ category: hash
 file_path: 10_hash/hash_chain.dart
 permalink: articles/hash/3-hash_chain
 prevpage:
-  url: 2-hash_double
+  url: /articles/hash/2-hash_double
   title: Hash Double
 ---
 

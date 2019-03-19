@@ -5,10 +5,10 @@ category: simple_sorting
 file_path: 02_simple_sorting/insert_sort.dart
 permalink: articles/simple-sorting/3-insert_sort
 prevpage: 
-    url: 2-select_sort
+    url: /articles/simple-sorting/2-select_sort
     title: Select Sort
 nextpage: 
-    url: 4-object_sort
+    url: /articles/simple-sorting/4-object_sort
     title: Object Sort
 ---
 

@@ -8,7 +8,7 @@ prevpage:
   url: /articles/weighted-graph
   title: Weighted Graph
 nextpage:
-  url: 2-path
+  url: /articles/weighted-graph/2-path
   title: Path
 ---
 

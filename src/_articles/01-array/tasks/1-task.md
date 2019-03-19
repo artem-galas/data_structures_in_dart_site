@@ -8,7 +8,7 @@ prevpage:
     url: /articles/array/tasks
     title: Tasks   
 nextpage: 
-    url: 2-task
+    url: /articles/array/tasks/2-task
     title: Task 2
 ---
 

@@ -4,7 +4,7 @@ title:  "Array"
 category: index
 permalink: articles/array/
 nextpage: 
-    url: 1-low_array
+    url: /articles/array/1-low_array
     title: Low Array
 ---
 

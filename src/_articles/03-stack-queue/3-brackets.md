@@ -5,10 +5,10 @@ category: stack-queue
 file_path: 03_stack_queue/stack/brackets.dart
 permalink: articles/stack-queue/3-brackets
 prevpage: 
-    url: 2-reverse
+    url: /articles/stack-queue/2-reverse
     title: Reverse
 nextpage: 
-    url: 4-queue
+    url: /articles/stack-queue/4-queue
     title: Queue
 ---
 

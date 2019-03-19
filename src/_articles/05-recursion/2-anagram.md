@@ -5,10 +5,10 @@ category: recursion
 file_path: 05_recursion/anagram.dart
 permalink: articles/recursion/2-anagram
 prevpage: 
-  url: 1-triangle
+  url: /articles/recursion/1-triangle
   title: Triangle
 nextpage: 
-  url: 3-binary_search
+  url: /articles/recursion/3-binary_search
   title: Binary Search
 ---
 

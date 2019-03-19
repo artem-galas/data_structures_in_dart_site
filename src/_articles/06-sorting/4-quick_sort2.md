@@ -5,7 +5,7 @@ category: sorting
 file_path: 06_sorting/quick_sort2.dart
 permalink: articles/sorting/4-quick_sort2
 prevpage:
-  url: 3-quick_sort1
+  url: /articles/sorting/3-quick_sort1
   title: Quick Sort1
 ---
 

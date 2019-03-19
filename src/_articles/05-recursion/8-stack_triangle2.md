@@ -5,10 +5,10 @@ category: recursion
 file_path: 05_recursion/stack_triangle2.dart
 permalink: articles/recursion/8-stack_triangle2
 prevpage: 
-  url: 7-stack_triangle
+  url: /articles/recursion/7-stack_triangle
   title: Stack Triangle
 nextpage: 
-  url: 9-power
+  url: /articles/recursion/9-power
   title: Power
 ---
 

@@ -5,10 +5,10 @@ category: recursion
 file_path: 05_recursion/towers.dart
 permalink: articles/recursion/4-towers
 prevpage: 
-  url: 3-binary_search
+  url: /articles/recursion/3-binary_search
   title: Binary Search
 nextpage: 
-  url: 5-merge
+  url: /articles/recursion/5-merge
   title: Merge
 ---
 

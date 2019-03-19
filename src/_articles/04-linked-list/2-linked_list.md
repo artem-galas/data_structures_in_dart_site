@@ -5,10 +5,10 @@ category: linked-list
 file_path: 04_linked_list/linked_list/linked_list.dart
 permalink: articles/linked-list/2-linked_list
 prevpage: 
-    url: 3-first_last_list
+    url: /articles/linked-list/3-first_last_list
     title: First Last List
 nextpage: 
-    url: 1-simple_linked_list
+    url: /articles/linked-list/1-simple_linked_list
     title: Simple Linked List
 ---
 

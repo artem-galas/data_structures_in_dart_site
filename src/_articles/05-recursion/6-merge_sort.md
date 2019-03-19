@@ -5,10 +5,10 @@ category: recursion
 file_path: 05_recursion/merge_sort.dart
 permalink: articles/recursion/6-merge_sort
 prevpage: 
-  url: 5-merge
+  url: /articles/recursion/5-merge
   title: Merge
 nextpage: 
-  url: 7-stack_triangle
+  url: /articles/recursion/7-stack_triangle
   title: Stack Triangle
 ---
 

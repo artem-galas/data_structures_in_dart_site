@@ -5,7 +5,7 @@ category: graph
 file_path: 12_graph/topo.dart
 permalink: articles/graph/4-topo
 prevpage:
-  url: 3-mst
+  url: /articles/graph/3-mst
   title: Mst
 ---
 

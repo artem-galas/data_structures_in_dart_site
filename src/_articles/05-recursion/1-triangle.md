@@ -8,7 +8,7 @@ prevpage:
   url: /articles/recursion
   title: Recursion
 nextpage: 
-  url: 2-anagram
+  url: /articles/recursion/2-anagram
   title: Anagram
 ---
 

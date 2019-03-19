@@ -8,7 +8,7 @@ prevpage:
   url: /articles/hash
   title: Hash Index
 nextpage:
-  url: 2-hash_double
+  url: /articles/hash/2-hash_double
   title: Hash Double
 ---
 

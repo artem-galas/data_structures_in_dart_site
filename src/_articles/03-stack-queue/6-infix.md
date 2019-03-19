@@ -5,10 +5,10 @@ category: stack-queue
 file_path: 03_stack_queue/infix.dart
 permalink: articles/stack-queue/6-infix
 prevpage: 
-    url: 5-priority-queue
+    url: /articles/stack-queue/5-priority-queue
     title: Priority Queue
 nextpage: 
-    url: 7-postfix
+    url: /articles/stack-queue/7-postfix
     title: Postfix
 ---
 

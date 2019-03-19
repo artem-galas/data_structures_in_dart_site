@@ -5,10 +5,10 @@ category: linked-list
 file_path: 04_linked_list/link_queue_list.dart
 permalink: articles/linked-list/5-link-queue-list
 prevpage: 
-    url: 4-link_stack_list
+    url: /articles/linked-list/4-link_stack_list
     title: Link Stack List
 nextpage:
-    url: 6-list_insertion_sort
+    url: /articles/linked-list/6-list_insertion_sort
     title: List Insertion Sort
 ---
 

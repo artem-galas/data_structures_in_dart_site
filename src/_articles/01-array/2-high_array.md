@@ -5,10 +5,10 @@ category: array
 file_path: 01_array/high_array.dart
 permalink: /articles/array/2-high_array
 prevpage: 
-    url: 1-low_array
+    url: /articles/array/1-low_array
     title: Low Array
 nextpage:
-    url: 3-ordered_array
+    url: /articles/array/3-ordered_array
     title: Ordered Array    
 ---
 
