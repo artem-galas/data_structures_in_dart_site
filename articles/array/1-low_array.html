@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="t-">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Low Array</title>
+  <meta name="description" content="Low Array">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="/articles/array/1-low_array">
+</head>
+
+<body>
+  <div class="main-container">
+    <nav class="mat-toolbar">
+  <div class="mat-toolbar-row">
+    <div class="navigation-menu">
+      <ul>
+        <li>
+          <a class="nav-link "
+             href="/">
+            <span class="nav-link-inner">Home</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/articles/">
+            <span class="nav-link-inner">Articles</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/about/">
+            <span class="nav-link-inner">About</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="main-container-inner">
+      <article class="c-article">
+  <header class="c-header c-article__header">
+    <h1 class="c-header__title">Low Array</h1>
+  </header>
+
+  <div class="c-article__main">
+    
+<nav id="subnav">
+  <ul>
+    
+    <li class="previous">
+        <a href="/articles/array">Array</a>
+    </li>
+    
+    
+    <li class="next">
+        <a href="2-high_array">High Array</a>
+    </li>
+    
+  </ul>
+</nav>
+
+
+    <h2 id="low-array">Low Array</h2>
+
+<p>Let’s look at some example programs that show how an array can be used. 
+We’ll start with an old-fashioned procedural version and then show the equivalent objectoriented approach.</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> dart 01_array/low_array.dart
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-dart" data-lang="dart"><span class="kn">import</span> <span class="s">'dart:io'</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">LowArray</span> <span class="o">{</span>
+  <span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="o">;</span> <span class="c1">// ref to array a</span>
+
+  <span class="c1">// Constructor</span>
+  <span class="n">LowArray</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;(</span><span class="n">size</span><span class="o">);</span> <span class="c1">// create array (List in Dart)</span>
+  <span class="o">}</span>
+
+  <span class="c1">// set value</span>
+  <span class="kt">void</span> <span class="n">setElement</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">a</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="c1">// get value</span>
+  <span class="kt">int</span> <span class="n">getElement</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="n">arguments</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">LowArray</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LowArray</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span> <span class="c1">// create LowArray instance</span>
+  <span class="kt">int</span> <span class="n">nElement</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// number of items in array</span>
+  <span class="kt">int</span> <span class="n">j</span><span class="o">;</span> <span class="c1">// loop variable</span>
+
+  <span class="c1">// Insert 10 items</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">setElement</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">77</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">setElement</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">99</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">setElement</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">44</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">setElement</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">55</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">setElement</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">22</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">setElement</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">88</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">setElement</span><span class="o">(</span><span class="mi">6</span><span class="o">,</span> <span class="mi">11</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">setElement</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">00</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">setElement</span><span class="o">(</span><span class="mi">8</span><span class="o">,</span> <span class="mi">66</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">setElement</span><span class="o">(</span><span class="mi">9</span><span class="o">,</span> <span class="mi">33</span><span class="o">);</span>
+
+  <span class="c1">// update number of items in array</span>
+  <span class="n">nElement</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+
+  <span class="c1">// Display items</span>
+  <span class="k">for</span><span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">nElement</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="n">stdout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">'</span><span class="si">${array.getElement(j)}</span><span class="s"> '</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">''</span><span class="o">);</span>
+
+  <span class="c1">// Element Search</span>
+  <span class="kt">int</span> <span class="n">searchKey</span> <span class="o">=</span> <span class="mi">26</span><span class="o">;</span>
+
+  <span class="c1">// for each element</span>
+  <span class="k">for</span><span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">nElement</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="c1">// found item?</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">array</span><span class="o">.</span><span class="na">getElement</span><span class="o">(</span><span class="n">j</span><span class="o">)</span> <span class="o">==</span> <span class="n">searchKey</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">break</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="k">if</span><span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">nElement</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">"Can't find </span><span class="si">$searchKey</span><span class="s">"</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">'Found </span><span class="si">$searchKey</span><span class="s">'</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="c1">// Delete Element with key 55</span>
+  <span class="k">for</span><span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">nElement</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">array</span><span class="o">.</span><span class="na">getElement</span><span class="o">(</span><span class="n">j</span><span class="o">)</span> <span class="o">==</span> <span class="mi">55</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">break</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="c1">// Higher ones down</span>
+  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">nElement</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="n">array</span><span class="o">.</span><span class="na">setElement</span><span class="o">(</span><span class="n">k</span><span class="o">,</span> <span class="n">array</span><span class="o">.</span><span class="na">getElement</span><span class="o">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="o">));</span>
+  <span class="o">}</span>
+  <span class="n">nElement</span> <span class="o">--;</span> <span class="c1">// decrement size</span>
+
+
+  <span class="c1">// Display items</span>
+  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">nElement</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="n">stdout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">'</span><span class="si">${array.getElement(j)}</span><span class="s"> '</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">''</span><span class="o">);</span>
+
+<span class="o">}</span></code></pre></figure>
+
+
+  </div>
+</article>
+
+    </div>
+
+    <footer class="c-footer">
+  <div class="c-footer__container">
+    <div class="footer-copyright">
+      <span>Created by <a href="https://github.com/artem-galas">Artem Galas</a></span>
+    </div>
+  </div>
+</footer>
+
+  </div>
+</body>
+</html>

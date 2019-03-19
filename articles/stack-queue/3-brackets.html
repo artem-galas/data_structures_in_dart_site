@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="t-">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Brackets</title>
+  <meta name="description" content="Brackets">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="/articles/stack-queue/3-brackets">
+</head>
+
+<body>
+  <div class="main-container">
+    <nav class="mat-toolbar">
+  <div class="mat-toolbar-row">
+    <div class="navigation-menu">
+      <ul>
+        <li>
+          <a class="nav-link "
+             href="/">
+            <span class="nav-link-inner">Home</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/articles/">
+            <span class="nav-link-inner">Articles</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/about/">
+            <span class="nav-link-inner">About</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="main-container-inner">
+      <article class="c-article">
+  <header class="c-header c-article__header">
+    <h1 class="c-header__title">Brackets</h1>
+  </header>
+
+  <div class="c-article__main">
+    
+<nav id="subnav">
+  <ul>
+    
+    <li class="previous">
+        <a href="2-reverse">Reverse</a>
+    </li>
+    
+    
+    <li class="next">
+        <a href="4-queue">Queue</a>
+    </li>
+    
+  </ul>
+</nav>
+
+
+    <h2 id="brackets">Brackets</h2>
+
+<p>One common use for stacks is to parse certain kinds of text strings.
+Typically,the strings are lines of code in a computer language, and the programs parsing them are compilers.</p>
+
+<p>Example:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">c[d] // correct
+a{b[c]d}e // correct
+</span><span class="gp">a{b(c]d}e // not correct;</span> <span class="o">]</span> doesn’t match <span class="o">(</span>
+<span class="gp">a[b{c}d]e} // not correct;</span> nothing matches final <span class="o">}</span>
+<span class="gp">a{b(c) // not correct;</span> nothing matches opening <span class="o">{</span>
+</code></pre></div></div>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> dart 03_stack_queue/stack/brackets.dart
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-dart" data-lang="dart"><span class="kn">import</span> <span class="s">'dart:io'</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">StackString</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">maxSize</span><span class="o">;</span>
+  <span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="n">stackArray</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">top</span><span class="o">;</span>
+
+  <span class="n">StackString</span><span class="o">(</span><span class="kt">int</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">maxSize</span> <span class="o">=</span> <span class="n">s</span><span class="o">;</span>
+    <span class="n">stackArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;(</span><span class="n">s</span><span class="o">);</span>
+    <span class="n">top</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">push</span><span class="o">(</span><span class="kt">String</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">stackArray</span><span class="o">[++</span><span class="n">top</span><span class="o">]</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">String</span> <span class="n">pop</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">stackArray</span><span class="o">[</span><span class="n">top</span><span class="o">--];</span>
+  <span class="o">}</span>
+
+  <span class="kt">String</span> <span class="n">peek</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">stackArray</span><span class="o">[</span><span class="n">top</span><span class="o">];</span>
+  <span class="o">}</span>
+
+  <span class="kt">bool</span> <span class="n">isEmpty</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="o">(</span><span class="n">top</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kt">bool</span> <span class="n">isFull</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="o">(</span><span class="n">top</span> <span class="o">==</span> <span class="n">maxSize</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">BracketChecker</span> <span class="o">{</span>
+  <span class="kt">String</span> <span class="n">input</span><span class="o">;</span>
+
+  <span class="n">BracketChecker</span><span class="o">(</span><span class="kt">String</span> <span class="n">_input</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">input</span> <span class="o">=</span> <span class="n">_input</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="c1">/// Check if all brackets are closed</span>
+  <span class="kt">void</span> <span class="n">check</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">stackSize</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+    <span class="n">StackString</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StackString</span><span class="o">(</span><span class="n">stackSize</span><span class="o">);</span>
+
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">stackSize</span><span class="o">;</span> <span class="n">i</span> <span class="o">++)</span> <span class="o">{</span>
+      <span class="kt">String</span> <span class="n">char</span> <span class="o">=</span> <span class="n">input</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+      <span class="k">switch</span><span class="o">(</span><span class="n">char</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">case</span> <span class="s">'{'</span><span class="o">:</span>
+        <span class="k">case</span> <span class="s">'['</span><span class="o">:</span>
+        <span class="k">case</span> <span class="s">'('</span><span class="o">:</span>
+          <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">char</span><span class="o">);</span>
+          <span class="k">break</span><span class="o">;</span>
+        <span class="k">case</span> <span class="s">'}'</span><span class="o">:</span>
+        <span class="k">case</span> <span class="s">']'</span><span class="o">:</span>
+        <span class="k">case</span> <span class="s">')'</span><span class="o">:</span>
+          <span class="k">if</span><span class="o">(!</span><span class="n">stack</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="kt">String</span> <span class="n">charx</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+            <span class="k">if</span><span class="o">((</span><span class="n">charx</span> <span class="o">!=</span> <span class="s">'{'</span> <span class="o">&amp;&amp;</span> <span class="n">char</span> <span class="o">==</span> <span class="s">'}'</span><span class="o">)</span> <span class="o">||</span>
+               <span class="o">(</span><span class="n">charx</span> <span class="o">!=</span> <span class="s">'['</span> <span class="o">&amp;&amp;</span> <span class="n">char</span> <span class="o">==</span> <span class="s">']'</span><span class="o">)</span> <span class="o">||</span>
+               <span class="o">(</span><span class="n">charx</span> <span class="o">!=</span> <span class="s">'('</span> <span class="o">&amp;&amp;</span> <span class="n">char</span> <span class="o">==</span> <span class="s">')'</span><span class="o">))</span> <span class="o">{</span>
+              <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">'Error </span><span class="si">$char</span><span class="s"> at </span><span class="si">$i</span><span class="s">'</span><span class="o">);</span>
+            <span class="o">}</span>
+          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">'Error </span><span class="si">$char</span><span class="s"> at </span><span class="si">$i</span><span class="s">'</span><span class="o">);</span>
+          <span class="o">}</span>
+          <span class="k">break</span><span class="o">;</span>
+        <span class="k">default</span><span class="o">:</span>
+          <span class="k">break</span><span class="o">;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">if</span><span class="o">(!</span><span class="n">stack</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+      <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">'Error: missing right delimeter'</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">'Enter a string: '</span><span class="o">);</span>
+  <span class="kt">String</span> <span class="n">input</span> <span class="o">=</span> <span class="n">stdin</span><span class="o">.</span><span class="na">readLineSync</span><span class="o">();</span>
+
+  <span class="n">BracketChecker</span> <span class="n">bracketChecker</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BracketChecker</span><span class="o">(</span><span class="n">input</span><span class="o">);</span>
+  <span class="n">bracketChecker</span><span class="o">.</span><span class="na">check</span><span class="o">();</span>
+
+<span class="o">}</span></code></pre></figure>
+
+
+  </div>
+</article>
+
+    </div>
+
+    <footer class="c-footer">
+  <div class="c-footer__container">
+    <div class="footer-copyright">
+      <span>Created by <a href="https://github.com/artem-galas">Artem Galas</a></span>
+    </div>
+  </div>
+</footer>
+
+  </div>
+</body>
+</html>

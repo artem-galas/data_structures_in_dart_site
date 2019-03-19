@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="t-">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Infix</title>
+  <meta name="description" content="Infix">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="/articles/stack-queue/6-infix">
+</head>
+
+<body>
+  <div class="main-container">
+    <nav class="mat-toolbar">
+  <div class="mat-toolbar-row">
+    <div class="navigation-menu">
+      <ul>
+        <li>
+          <a class="nav-link "
+             href="/">
+            <span class="nav-link-inner">Home</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/articles/">
+            <span class="nav-link-inner">Articles</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/about/">
+            <span class="nav-link-inner">About</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="main-container-inner">
+      <article class="c-article">
+  <header class="c-header c-article__header">
+    <h1 class="c-header__title">Infix</h1>
+  </header>
+
+  <div class="c-article__main">
+    
+<nav id="subnav">
+  <ul>
+    
+    <li class="previous">
+        <a href="5-priority-queue">Priority Queue</a>
+    </li>
+    
+    
+    <li class="next">
+        <a href="7-postfix">Postfix</a>
+    </li>
+    
+  </ul>
+</nav>
+
+
+    <h2 id="infix">Infix</h2>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> dart 03_stack_queue/infix.dart
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-dart" data-lang="dart"><span class="kn">import</span> <span class="s">'dart:io'</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">StackX</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">maxSize</span><span class="o">;</span>
+  <span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="n">stackArray</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">top</span><span class="o">;</span>
+
+  <span class="n">StackX</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">maxSize</span> <span class="o">=</span> <span class="n">size</span><span class="o">;</span>
+    <span class="n">stackArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;(</span><span class="n">maxSize</span><span class="o">);</span>
+    <span class="n">top</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="c1">/// Put item on top of stack</span>
+  <span class="kt">void</span> <span class="n">push</span><span class="o">(</span><span class="kt">String</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">stackArray</span><span class="o">[++</span><span class="n">top</span><span class="o">]</span> <span class="o">=</span> <span class="n">item</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="c1">/// Take item from top of stack</span>
+  <span class="kt">String</span> <span class="n">pop</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">stackArray</span><span class="o">[</span><span class="n">top</span><span class="o">--];</span>
+  <span class="o">}</span>
+
+  <span class="c1">/// Peek at top of stack</span>
+  <span class="kt">String</span> <span class="n">peek</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">stackArray</span><span class="o">[</span><span class="n">top</span><span class="o">];</span>
+  <span class="o">}</span>
+
+  <span class="kt">bool</span> <span class="n">isEmpty</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">top</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">int</span> <span class="n">size</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">top</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">String</span> <span class="n">peekN</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">stackArray</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>
+  <span class="o">}</span>
+
+  <span class="c1">/// Display Stack Data</span>
+  <span class="kt">void</span> <span class="n">displayStack</span><span class="o">(</span><span class="kt">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">stdout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+    <span class="n">stdout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">'Stack (bottom -&gt; top): '</span><span class="o">);</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">();</span> <span class="n">i</span> <span class="o">++)</span> <span class="o">{</span>
+      <span class="n">stdout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">'</span><span class="si">${peekN(i)}</span><span class="s"> '</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">InfixToPostfix</span> <span class="o">{</span>
+  <span class="n">StackX</span> <span class="n">stackX</span><span class="o">;</span>
+  <span class="kt">String</span> <span class="n">input</span><span class="o">;</span>
+  <span class="kt">String</span> <span class="n">output</span> <span class="o">=</span> <span class="s">''</span><span class="o">;</span>
+
+  <span class="n">InfixToPostfix</span><span class="o">(</span><span class="kt">String</span> <span class="n">_input</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">input</span> <span class="o">=</span> <span class="n">_input</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">stackSize</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+    <span class="n">stackX</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StackX</span><span class="o">(</span><span class="n">stackSize</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="c1">/// Do translation to postfix</span>
+  <span class="kt">String</span> <span class="n">doTranslation</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// for each char</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">input</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="kt">String</span> <span class="n">char</span> <span class="o">=</span> <span class="n">input</span><span class="o">[</span><span class="n">i</span><span class="o">];</span> <span class="c1">// get it</span>
+      <span class="n">stackX</span><span class="o">.</span><span class="na">displayStack</span><span class="o">(</span><span class="s">'For </span><span class="si">$char</span><span class="s"> '</span><span class="o">);</span>
+      <span class="k">switch</span><span class="o">(</span><span class="n">char</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">case</span> <span class="s">'+'</span><span class="o">:</span>
+        <span class="k">case</span> <span class="s">'-'</span><span class="o">:</span>
+          <span class="n">gotOperator</span><span class="o">(</span><span class="n">char</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+          <span class="k">break</span><span class="o">;</span>
+        <span class="k">case</span> <span class="s">'*'</span><span class="o">:</span>
+        <span class="k">case</span> <span class="s">'/'</span><span class="o">:</span>
+          <span class="n">gotOperator</span><span class="o">(</span><span class="n">char</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+          <span class="k">break</span><span class="o">;</span>
+        <span class="k">case</span> <span class="s">'('</span><span class="o">:</span>
+          <span class="n">stackX</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">char</span><span class="o">);</span>
+          <span class="k">break</span><span class="o">;</span>
+        <span class="k">case</span> <span class="s">')'</span><span class="o">:</span>
+          <span class="n">gotParent</span><span class="o">(</span><span class="n">char</span><span class="o">);</span>
+          <span class="k">break</span><span class="o">;</span>
+        <span class="k">default</span><span class="o">:</span>
+          <span class="n">output</span> <span class="o">=</span> <span class="n">output</span> <span class="o">+</span> <span class="n">char</span><span class="o">;</span>
+          <span class="k">break</span><span class="o">;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="k">while</span><span class="o">(!</span><span class="n">stackX</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+      <span class="n">stackX</span><span class="o">.</span><span class="na">displayStack</span><span class="o">(</span><span class="s">'While '</span><span class="o">);</span>
+      <span class="n">output</span> <span class="o">=</span> <span class="n">output</span> <span class="o">+</span> <span class="n">stackX</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="n">stackX</span><span class="o">.</span><span class="na">displayStack</span><span class="o">(</span><span class="s">'End '</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">output</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">gotOperator</span><span class="o">(</span><span class="kt">String</span> <span class="n">opThis</span><span class="o">,</span> <span class="kt">int</span> <span class="n">priority</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">while</span><span class="o">(!</span><span class="n">stackX</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+      <span class="kt">String</span> <span class="n">opTop</span> <span class="o">=</span> <span class="n">stackX</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+      <span class="k">if</span><span class="o">(</span><span class="n">opTop</span> <span class="o">==</span> <span class="s">'('</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">stackX</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">opTop</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">prior</span><span class="o">;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">opTop</span> <span class="o">==</span> <span class="s">'+'</span> <span class="o">||</span> <span class="n">opTop</span> <span class="o">==</span> <span class="s">'-'</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">prior</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+          <span class="n">prior</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">prior</span> <span class="o">&lt;</span> <span class="n">priority</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">stackX</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">opTop</span><span class="o">);</span>
+          <span class="k">break</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+          <span class="n">output</span> <span class="o">=</span> <span class="n">output</span> <span class="o">+</span> <span class="n">opTop</span><span class="o">;</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="n">stackX</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">opThis</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">gotParent</span><span class="o">(</span><span class="kt">String</span> <span class="n">char</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">while</span><span class="o">(!</span><span class="n">stackX</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+      <span class="kt">String</span> <span class="n">charX</span> <span class="o">=</span> <span class="n">stackX</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+      <span class="k">if</span><span class="o">(</span><span class="n">charX</span> <span class="o">==</span> <span class="s">'('</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="o">}</span>
+      <span class="k">else</span> <span class="o">{</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">output</span> <span class="o">+</span> <span class="n">charX</span><span class="o">;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">String</span> <span class="n">input</span><span class="o">,</span> <span class="n">output</span><span class="o">;</span>
+
+  <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">'Enter infix:'</span><span class="o">);</span>
+  <span class="n">input</span> <span class="o">=</span> <span class="n">stdin</span><span class="o">.</span><span class="na">readLineSync</span><span class="o">();</span>
+
+  <span class="n">InfixToPostfix</span> <span class="n">infixToPostfix</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InfixToPostfix</span><span class="o">(</span><span class="n">input</span><span class="o">);</span>
+
+  <span class="n">output</span> <span class="o">=</span> <span class="n">infixToPostfix</span><span class="o">.</span><span class="na">doTranslation</span><span class="o">();</span>
+
+  <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">'Postfix is </span><span class="si">$output</span><span class="s">'</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+
+  </div>
+</article>
+
+    </div>
+
+    <footer class="c-footer">
+  <div class="c-footer__container">
+    <div class="footer-copyright">
+      <span>Created by <a href="https://github.com/artem-galas">Artem Galas</a></span>
+    </div>
+  </div>
+</footer>
+
+  </div>
+</body>
+</html>

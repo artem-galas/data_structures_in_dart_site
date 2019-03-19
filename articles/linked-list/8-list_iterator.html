@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html class="t-">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>List Iterator</title>
+  <meta name="description" content="List Iterator">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="/articles/linked-list/8-list_iterator">
+</head>
+
+<body>
+  <div class="main-container">
+    <nav class="mat-toolbar">
+  <div class="mat-toolbar-row">
+    <div class="navigation-menu">
+      <ul>
+        <li>
+          <a class="nav-link "
+             href="/">
+            <span class="nav-link-inner">Home</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/articles/">
+            <span class="nav-link-inner">Articles</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/about/">
+            <span class="nav-link-inner">About</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="main-container-inner">
+      <article class="c-article">
+  <header class="c-header c-article__header">
+    <h1 class="c-header__title">List Iterator</h1>
+  </header>
+
+  <div class="c-article__main">
+    
+<nav id="subnav">
+  <ul>
+    
+    <li class="previous">
+        <a href="7-double_linked_list">Double Linked List</a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+
+    <h2 id="list-iterator">List Iterator</h2>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> dart 04_linked_list/list_iterator.dart
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-dart" data-lang="dart"><span class="kn">import</span> <span class="s">'dart:io'</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Link</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">data</span><span class="o">;</span>
+  <span class="n">Link</span> <span class="n">next</span><span class="o">;</span>
+
+  <span class="n">Link</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">data</span><span class="o">){}</span>
+
+  <span class="kt">void</span> <span class="n">displayLink</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">stdout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">'</span><span class="si">$data</span><span class="s"> '</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">LinkList</span> <span class="o">{</span>
+  <span class="n">Link</span> <span class="n">first</span><span class="o">;</span>
+
+  <span class="n">LinkList</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">first</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="n">Link</span> <span class="n">getFirst</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">first</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">setFirst</span><span class="o">(</span><span class="n">Link</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">first</span> <span class="o">=</span> <span class="n">item</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">bool</span> <span class="n">isEmpty</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">first</span> <span class="o">==</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="n">ListIterator</span> <span class="n">getIterator</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">ListIterator</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">displayList</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">Link</span> <span class="n">current</span> <span class="o">=</span> <span class="n">first</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">current</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">current</span><span class="o">.</span><span class="na">displayLink</span><span class="o">();</span>
+      <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">ListIterator</span> <span class="o">{</span>
+  <span class="n">Link</span> <span class="n">current</span><span class="o">;</span>
+  <span class="n">Link</span> <span class="n">previous</span><span class="o">;</span>
+  <span class="n">LinkList</span> <span class="n">ourList</span><span class="o">;</span>
+
+  <span class="n">ListIterator</span><span class="o">(</span><span class="n">LinkList</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">ourList</span> <span class="o">=</span> <span class="n">list</span><span class="o">;</span>
+    <span class="n">reset</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">reset</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="n">ourList</span><span class="o">.</span><span class="na">getFirst</span><span class="o">();</span>
+    <span class="n">previous</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">bool</span> <span class="n">atEnd</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">current</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">nextLink</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">previous</span> <span class="o">=</span> <span class="n">current</span><span class="o">;</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="n">Link</span> <span class="n">getCurrent</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">current</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">insertAfter</span><span class="o">(</span><span class="kt">int</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Link</span> <span class="n">newLink</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Link</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">ourList</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+      <span class="n">ourList</span><span class="o">.</span><span class="na">setFirst</span><span class="o">(</span><span class="n">newLink</span><span class="o">);</span>
+      <span class="n">current</span> <span class="o">=</span> <span class="n">newLink</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="n">newLink</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+      <span class="n">current</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newLink</span><span class="o">;</span>
+      <span class="n">nextLink</span><span class="o">();</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">insertBefore</span><span class="o">(</span><span class="kt">int</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Link</span> <span class="n">newLink</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Link</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">previous</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">newLink</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">ourList</span><span class="o">.</span><span class="na">getFirst</span><span class="o">();</span>
+      <span class="n">ourList</span><span class="o">.</span><span class="na">setFirst</span><span class="o">(</span><span class="n">newLink</span><span class="o">);</span>
+      <span class="n">reset</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="n">newLink</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">previous</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+      <span class="n">previous</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newLink</span><span class="o">;</span>
+      <span class="n">current</span> <span class="o">=</span> <span class="n">newLink</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kt">int</span> <span class="n">deleteCurrent</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="na">data</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">previous</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">ourList</span><span class="o">.</span><span class="na">setFirst</span><span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">next</span><span class="o">);</span>
+      <span class="n">reset</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="n">previous</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">atEnd</span><span class="o">())</span> <span class="o">{</span>
+        <span class="n">reset</span><span class="o">();</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">LinkList</span> <span class="n">linkList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkList</span><span class="o">();</span>
+  <span class="n">ListIterator</span> <span class="n">iterator1</span> <span class="o">=</span> <span class="n">linkList</span><span class="o">.</span><span class="na">getIterator</span><span class="o">();</span>
+  <span class="kt">int</span> <span class="n">value</span><span class="o">;</span>
+
+  <span class="n">iterator1</span><span class="o">.</span><span class="na">insertAfter</span><span class="o">(</span><span class="mi">20</span><span class="o">);</span>
+  <span class="n">iterator1</span><span class="o">.</span><span class="na">insertAfter</span><span class="o">(</span><span class="mi">40</span><span class="o">);</span>
+  <span class="n">iterator1</span><span class="o">.</span><span class="na">insertAfter</span><span class="o">(</span><span class="mi">80</span><span class="o">);</span>
+  <span class="n">iterator1</span><span class="o">.</span><span class="na">insertBefore</span><span class="o">(</span><span class="mi">60</span><span class="o">);</span>
+
+  <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">'Enter first letter of: show, reset, next before, after, delete'</span><span class="o">);</span>
+    <span class="kt">String</span> <span class="n">choise</span> <span class="o">=</span> <span class="n">stdin</span><span class="o">.</span><span class="na">readLineSync</span><span class="o">();</span>
+    <span class="k">switch</span><span class="o">(</span><span class="n">choise</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">case</span> <span class="s">'s'</span><span class="o">:</span>
+        <span class="k">if</span><span class="o">(!</span><span class="n">linkList</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+          <span class="n">linkList</span><span class="o">.</span><span class="na">displayList</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+          <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">'List is empty'</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">case</span> <span class="s">'r'</span><span class="o">:</span>
+        <span class="n">iterator1</span><span class="o">.</span><span class="na">reset</span><span class="o">();</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">case</span> <span class="s">'n'</span><span class="o">:</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">linkList</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">iterator1</span><span class="o">.</span><span class="na">atEnd</span><span class="o">())</span> <span class="o">{</span>
+          <span class="n">iterator1</span><span class="o">.</span><span class="na">nextLink</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+          <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">"Can't go to next link"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">case</span> <span class="s">'g'</span><span class="o">:</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">linkList</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+          <span class="n">value</span> <span class="o">=</span> <span class="n">iterator1</span><span class="o">.</span><span class="na">getCurrent</span><span class="o">().</span><span class="na">data</span><span class="o">;</span>
+          <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">'Retruned </span><span class="si">$value</span><span class="s">'</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+          <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">'List is empty'</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">case</span> <span class="s">'b'</span><span class="o">:</span>
+        <span class="n">stdout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">'Enter value to insert: '</span><span class="o">);</span>
+        <span class="kt">String</span> <span class="n">userInput</span> <span class="o">=</span> <span class="n">stdin</span><span class="o">.</span><span class="na">readLineSync</span><span class="o">();</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="kt">int</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">userInput</span><span class="o">);</span>
+        <span class="n">iterator1</span><span class="o">.</span><span class="na">insertBefore</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">case</span> <span class="s">'a'</span><span class="o">:</span>
+        <span class="n">stdout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">'Enter value to insert: '</span><span class="o">);</span>
+        <span class="kt">String</span> <span class="n">userInput</span> <span class="o">=</span> <span class="n">stdin</span><span class="o">.</span><span class="na">readLineSync</span><span class="o">();</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="kt">int</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">userInput</span><span class="o">);</span> 
+        <span class="n">iterator1</span><span class="o">.</span><span class="na">insertAfter</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">case</span> <span class="s">'d'</span><span class="o">:</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">linkList</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+          <span class="n">value</span> <span class="o">=</span> <span class="n">iterator1</span><span class="o">.</span><span class="na">deleteCurrent</span><span class="o">();</span>
+          <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">'Deletet </span><span class="si">$value</span><span class="s">'</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+          <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">"Can't delete"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">default</span><span class="o">:</span>
+        <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">'Invalud command'</span><span class="o">);</span>  
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+
+  </div>
+</article>
+
+    </div>
+
+    <footer class="c-footer">
+  <div class="c-footer__container">
+    <div class="footer-copyright">
+      <span>Created by <a href="https://github.com/artem-galas">Artem Galas</a></span>
+    </div>
+  </div>
+</footer>
+
+  </div>
+</body>
+</html>

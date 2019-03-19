@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html class="t-">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Towers</title>
+  <meta name="description" content="Towers">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="/articles/recursion/4-towers">
+</head>
+
+<body>
+  <div class="main-container">
+    <nav class="mat-toolbar">
+  <div class="mat-toolbar-row">
+    <div class="navigation-menu">
+      <ul>
+        <li>
+          <a class="nav-link "
+             href="/">
+            <span class="nav-link-inner">Home</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/articles/">
+            <span class="nav-link-inner">Articles</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/about/">
+            <span class="nav-link-inner">About</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="main-container-inner">
+      <article class="c-article">
+  <header class="c-header c-article__header">
+    <h1 class="c-header__title">Towers</h1>
+  </header>
+
+  <div class="c-article__main">
+    
+<nav id="subnav">
+  <ul>
+    
+    <li class="previous">
+        <a href="3-binary_search">Binary Search</a>
+    </li>
+    
+    
+    <li class="next">
+        <a href="5-merge">Merge</a>
+    </li>
+    
+  </ul>
+</nav>
+
+
+    <h2 id="towers">Towers</h2>
+
+<p>The Towers of Hanoi is an ancient puzzle consisting of a number of disks  placed on three columns.</p>
+
+<p>The disks all have different diameters and holes in the middle so they will fit over the columns.</p>
+
+<p>All the disks start out on column <code class="highlighter-rouge">A</code>.
+The object of the puzzle is to transfer all the disks from column <code class="highlighter-rouge">A</code> to column <code class="highlighter-rouge">C</code>.
+Only one disk can be moved at a time, and no disk can be placed on a disk that’s smaller than itself</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> dart 05_recursion/towers.dart
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-dart" data-lang="dart"><span class="kn">import</span> <span class="s">'dart:io'</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">TowerApp</span> <span class="o">{</span>
+  <span class="kd">static</span> <span class="kt">int</span> <span class="n">nDisk</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+
+  <span class="kd">static</span> <span class="kt">void</span> <span class="n">doTowers</span><span class="o">(</span><span class="kt">int</span> <span class="n">topN</span><span class="o">,</span> <span class="kt">String</span> <span class="n">from</span><span class="o">,</span> <span class="kt">String</span> <span class="n">inter</span><span class="o">,</span> <span class="kt">String</span> <span class="n">to</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">topN</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">'Disk 1 from </span><span class="si">$from</span><span class="s"> to </span><span class="si">$to</span><span class="s">'</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="n">doTowers</span><span class="o">(</span><span class="n">topN</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="n">inter</span><span class="o">);</span>
+      <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">(</span><span class="s">'Disk </span><span class="si">$topN</span><span class="s"> from </span><span class="si">$from</span><span class="s"> to </span><span class="si">$to</span><span class="s">'</span><span class="o">);</span>
+      <span class="n">doTowers</span><span class="o">(</span><span class="n">topN</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">inter</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">TowerApp</span><span class="o">.</span><span class="na">doTowers</span><span class="o">(</span><span class="n">TowerApp</span><span class="o">.</span><span class="na">nDisk</span><span class="o">,</span> <span class="s">'A'</span><span class="o">,</span> <span class="s">'B'</span><span class="o">,</span> <span class="s">'C'</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+
+  </div>
+</article>
+
+    </div>
+
+    <footer class="c-footer">
+  <div class="c-footer__container">
+    <div class="footer-copyright">
+      <span>Created by <a href="https://github.com/artem-galas">Artem Galas</a></span>
+    </div>
+  </div>
+</footer>
+
+  </div>
+</body>
+</html>

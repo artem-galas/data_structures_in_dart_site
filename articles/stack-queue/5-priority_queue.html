@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="t-">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Priority Queue</title>
+  <meta name="description" content="Priority Queue">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="/articles/stack-queue/5-priority_queue">
+</head>
+
+<body>
+  <div class="main-container">
+    <nav class="mat-toolbar">
+  <div class="mat-toolbar-row">
+    <div class="navigation-menu">
+      <ul>
+        <li>
+          <a class="nav-link "
+             href="/">
+            <span class="nav-link-inner">Home</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/articles/">
+            <span class="nav-link-inner">Articles</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/about/">
+            <span class="nav-link-inner">About</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="main-container-inner">
+      <article class="c-article">
+  <header class="c-header c-article__header">
+    <h1 class="c-header__title">Priority Queue</h1>
+  </header>
+
+  <div class="c-article__main">
+    
+<nav id="subnav">
+  <ul>
+    
+    <li class="previous">
+        <a href="4-queue">Queue</a>
+    </li>
+    
+    
+    <li class="next">
+        <a href="6-infix">Infix</a>
+    </li>
+    
+  </ul>
+</nav>
+
+
+    <h2 id="priority-queue">Priority Queue</h2>
+
+<p>A priority queue is a more specialized data structure than a stack or a queue.</p>
+
+<p>However, it’s a useful tool in a surprising number of situations. Like an ordinary queue, a priority queue has a front and a rear, and items are removed from the front.</p>
+
+<p>However, in a priority queue, items are ordered by key value so that the item with the lowest key (or in some implementations the highest key) is always at the front. Items are inserted in the proper position to maintain the order.</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> dart 03_stack_queue/priority_queue.dart
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-dart" data-lang="dart"><span class="kn">import</span> <span class="s">'dart:io'</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">PriorityQueue</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">maxSize</span><span class="o">;</span>
+  <span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">queueArray</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">nItems</span><span class="o">;</span>
+
+  <span class="n">PriorityQueue</span><span class="o">(</span><span class="kt">int</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">maxSize</span> <span class="o">=</span> <span class="n">s</span><span class="o">;</span>
+    <span class="n">queueArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;(</span><span class="n">maxSize</span><span class="o">);</span>
+    <span class="n">nItems</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="c1">/// Insert Data to Queue</span>
+  <span class="kt">void</span> <span class="n">insert</span><span class="o">(</span><span class="kt">int</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">j</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">nItems</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">queueArray</span><span class="o">[</span><span class="n">nItems</span><span class="o">++]</span> <span class="o">=</span> <span class="n">item</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="k">for</span><span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="n">nItems</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">--)</span> <span class="o">{</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">item</span> <span class="o">&gt;</span> <span class="n">queueArray</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">{</span>
+          <span class="n">queueArray</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">queueArray</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+          <span class="k">break</span><span class="o">;</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+      <span class="n">queueArray</span><span class="o">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">item</span><span class="o">;</span>
+      <span class="n">nItems</span> <span class="o">++;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="c1">/// Remove data</span>
+  <span class="kt">int</span> <span class="n">remove</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">queueArray</span><span class="o">[--</span><span class="n">nItems</span><span class="o">];</span>
+  <span class="o">}</span>
+
+  <span class="kt">int</span> <span class="n">peekMin</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">queueArray</span><span class="o">[</span><span class="n">nItems</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+  <span class="o">}</span>
+
+  <span class="kt">bool</span> <span class="n">isEmpty</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">nItems</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">bool</span> <span class="n">isFull</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">nItems</span> <span class="o">==</span> <span class="n">maxSize</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">PriorityQueue</span> <span class="n">priorityQueue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+  <span class="n">priorityQueue</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">30</span><span class="o">);</span>
+  <span class="n">priorityQueue</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
+  <span class="n">priorityQueue</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+  <span class="n">priorityQueue</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">40</span><span class="o">);</span>
+  <span class="n">priorityQueue</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">20</span><span class="o">);</span>
+
+  <span class="k">while</span><span class="o">(!</span><span class="n">priorityQueue</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">item</span> <span class="o">=</span> <span class="n">priorityQueue</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
+    <span class="n">stdout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">'</span><span class="si">$item</span><span class="s"> '</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+
+  </div>
+</article>
+
+    </div>
+
+    <footer class="c-footer">
+  <div class="c-footer__container">
+    <div class="footer-copyright">
+      <span>Created by <a href="https://github.com/artem-galas">Artem Galas</a></span>
+    </div>
+  </div>
+</footer>
+
+  </div>
+</body>
+</html>

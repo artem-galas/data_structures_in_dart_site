@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="t-">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Bfs</title>
+  <meta name="description" content="Bfs">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="/articles/graph/2-bfs">
+</head>
+
+<body>
+  <div class="main-container">
+    <nav class="mat-toolbar">
+  <div class="mat-toolbar-row">
+    <div class="navigation-menu">
+      <ul>
+        <li>
+          <a class="nav-link "
+             href="/">
+            <span class="nav-link-inner">Home</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/articles/">
+            <span class="nav-link-inner">Articles</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/about/">
+            <span class="nav-link-inner">About</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="main-container-inner">
+      <article class="c-article">
+  <header class="c-header c-article__header">
+    <h1 class="c-header__title">Bfs</h1>
+  </header>
+
+  <div class="c-article__main">
+    
+<nav id="subnav">
+  <ul>
+    
+    <li class="previous">
+        <a href="1-dfs">Dfs</a>
+    </li>
+    
+    
+    <li class="next">
+        <a href="3-mst">Mst</a>
+    </li>
+    
+  </ul>
+</nav>
+
+
+    <h2 id="bfs">Bfs</h2>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> dart 12_graph/bfs.dart
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-dart" data-lang="dart"><span class="kn">import</span> <span class="s">'dart:io'</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="s">'../03_stack_queue/queue.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'./until/graph.dart'</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">GraphBfs</span> <span class="kd">extends</span> <span class="n">Graph</span> <span class="o">{</span>
+  <span class="n">Queue</span> <span class="n">queue</span><span class="o">;</span>
+
+  <span class="n">GraphBfs</span><span class="o">():</span> <span class="k">super</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Queue</span><span class="o">(</span><span class="n">maxVerts</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">bfs</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">vertexList</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">wasVisited</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="n">displayVertex</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="n">queue</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">v2</span><span class="o">;</span>
+
+    <span class="k">while</span> <span class="o">(!</span><span class="n">queue</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+      <span class="kt">int</span> <span class="n">v1</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
+      <span class="k">while</span><span class="o">(</span> <span class="o">(</span><span class="n">v2</span> <span class="o">=</span> <span class="n">getAdjUnvisitedVertex</span><span class="o">(</span><span class="n">v1</span><span class="o">))</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">vertexList</span><span class="o">[</span><span class="n">v2</span><span class="o">].</span><span class="na">wasVisited</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="n">displayVertex</span><span class="o">(</span><span class="n">v2</span><span class="o">);</span>
+        <span class="n">queue</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">v2</span><span class="o">);</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nVerts</span><span class="o">;</span> <span class="n">i</span> <span class="o">++)</span> <span class="o">{</span>
+      <span class="n">vertexList</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">wasVisited</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">GraphBfs</span> <span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GraphBfs</span><span class="o">();</span>
+  <span class="n">graph</span><span class="o">.</span><span class="na">addVertex</span><span class="o">(</span><span class="s">'A'</span><span class="o">);</span>
+  <span class="n">graph</span><span class="o">.</span><span class="na">addVertex</span><span class="o">(</span><span class="s">'B'</span><span class="o">);</span>
+  <span class="n">graph</span><span class="o">.</span><span class="na">addVertex</span><span class="o">(</span><span class="s">'C'</span><span class="o">);</span>
+  <span class="n">graph</span><span class="o">.</span><span class="na">addVertex</span><span class="o">(</span><span class="s">'D'</span><span class="o">);</span>
+  <span class="n">graph</span><span class="o">.</span><span class="na">addVertex</span><span class="o">(</span><span class="s">'E'</span><span class="o">);</span>
+
+  <span class="n">graph</span><span class="o">.</span><span class="na">addEdge</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+  <span class="n">graph</span><span class="o">.</span><span class="na">addEdge</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+  <span class="n">graph</span><span class="o">.</span><span class="na">addEdge</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+  <span class="n">graph</span><span class="o">.</span><span class="na">addEdge</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
+
+  <span class="n">stdout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">'Visits: '</span><span class="o">);</span>
+  <span class="n">graph</span><span class="o">.</span><span class="na">bfs</span><span class="o">();</span>
+  <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+
+  </div>
+</article>
+
+    </div>
+
+    <footer class="c-footer">
+  <div class="c-footer__container">
+    <div class="footer-copyright">
+      <span>Created by <a href="https://github.com/artem-galas">Artem Galas</a></span>
+    </div>
+  </div>
+</footer>
+
+  </div>
+</body>
+</html>

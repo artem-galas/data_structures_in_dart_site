@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html class="t-">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Array | Task 3</title>
+  <meta name="description" content="Array | Task 3">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="/articles/array/tasks/3-task">
+</head>
+
+<body>
+  <div class="main-container">
+    <nav class="mat-toolbar">
+  <div class="mat-toolbar-row">
+    <div class="navigation-menu">
+      <ul>
+        <li>
+          <a class="nav-link "
+             href="/">
+            <span class="nav-link-inner">Home</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/articles/">
+            <span class="nav-link-inner">Articles</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/about/">
+            <span class="nav-link-inner">About</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="main-container-inner">
+      <article class="c-article">
+  <header class="c-header c-article__header">
+    <h1 class="c-header__title">Array | Task 3</h1>
+  </header>
+
+  <div class="c-article__main">
+    
+<nav id="subnav">
+  <ul>
+    
+    <li class="previous">
+        <a href="2-task">Tasks 2</a>
+    </li>
+    
+    
+    <li class="next">
+        <a href="4-task">Task 4</a>
+    </li>
+    
+  </ul>
+</nav>
+
+
+    <h2 id="array--task-3">Array | Task 3</h2>
+
+<p>The removeMax() method in <code class="highlighter-rouge">task_2.dart</code> suggests a way to sort the contents of an array by key value.</p>
+
+<p>Implement a sorting scheme that does not require modifying the HighArray class, but only the code in main().</p>
+
+<p>You’ll need a second array, which will end up inversely sorted.
+(This scheme is a rather crude variant of the selection sort in Chap03, ‘Simple Sorting.)</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> dart 01_array/tasks/task_3.dart
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-dart" data-lang="dart"><span class="c1">/// The removeMax() method in `task_2.dart` suggests a way to sort the contents of an array by key value.</span>
+<span class="c1">/// Implement a sorting scheme that does not require modifying the HighArray class, but only the code in main().</span>
+<span class="c1">/// You’ll need a second array, which will end up inversely sorted.</span>
+<span class="c1">/// (This scheme is a rather crude variant of the selection sort in Chap03, 'Simple Sorting.)</span>
+
+<span class="kn">import</span> <span class="s">'dart:io'</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="s">'../high_array.dart'</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">HighArrayTask3</span> <span class="kd">extends</span> <span class="n">HighArray</span> <span class="o">{</span>
+
+  <span class="n">HighArrayTask3</span><span class="o">(</span><span class="kt">int</span> <span class="n">max</span><span class="o">):</span> <span class="k">super</span><span class="o">(</span><span class="n">max</span><span class="o">);</span>
+
+  <span class="c1">/// Remove Max value</span>
+  <span class="kt">int</span> <span class="n">removeMax</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+    <span class="kt">int</span> <span class="n">maxIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nElems</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="k">if</span><span class="o">(</span><span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">max</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">max</span> <span class="o">=</span> <span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+        <span class="n">maxIndex</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">maxIndex</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">nElems</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">k</span> <span class="o">++)</span> <span class="o">{</span>
+      <span class="n">a</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">a</span><span class="o">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+    <span class="o">}</span>
+    <span class="n">nElems</span> <span class="o">--;</span>
+
+    <span class="k">return</span> <span class="n">max</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">maxSize</span> <span class="o">=</span> <span class="mi">11</span><span class="o">;</span> <span class="c1">// array size</span>
+  <span class="n">HighArrayTask3</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HighArrayTask3</span><span class="o">(</span><span class="n">maxSize</span><span class="o">);</span>
+
+  <span class="c1">// Insert 10 items</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">77</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">99</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">44</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">55</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">22</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">88</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">11</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">00</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">66</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">33</span><span class="o">);</span>
+
+  <span class="c1">// Display items</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
+
+  <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="na">nElems</span><span class="o">;</span>
+  <span class="n">HighArray</span> <span class="n">orderedArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HighArray</span><span class="o">(</span><span class="n">maxSize</span><span class="o">);</span>
+  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">item</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="na">removeMax</span><span class="o">();</span>
+    <span class="n">orderedArray</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="n">orderedArray</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+
+  </div>
+</article>
+
+    </div>
+
+    <footer class="c-footer">
+  <div class="c-footer__container">
+    <div class="footer-copyright">
+      <span>Created by <a href="https://github.com/artem-galas">Artem Galas</a></span>
+    </div>
+  </div>
+</footer>
+
+  </div>
+</body>
+</html>

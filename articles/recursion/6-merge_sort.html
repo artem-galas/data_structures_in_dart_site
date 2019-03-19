@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="t-">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Merge Sort</title>
+  <meta name="description" content="Merge Sort">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="/articles/recursion/6-merge_sort">
+</head>
+
+<body>
+  <div class="main-container">
+    <nav class="mat-toolbar">
+  <div class="mat-toolbar-row">
+    <div class="navigation-menu">
+      <ul>
+        <li>
+          <a class="nav-link "
+             href="/">
+            <span class="nav-link-inner">Home</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/articles/">
+            <span class="nav-link-inner">Articles</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/about/">
+            <span class="nav-link-inner">About</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="main-container-inner">
+      <article class="c-article">
+  <header class="c-header c-article__header">
+    <h1 class="c-header__title">Merge Sort</h1>
+  </header>
+
+  <div class="c-article__main">
+    
+<nav id="subnav">
+  <ul>
+    
+    <li class="previous">
+        <a href="5-merge">Merge</a>
+    </li>
+    
+    
+    <li class="next">
+        <a href="7-stack_triangle">Stack Triangle</a>
+    </li>
+    
+  </ul>
+</nav>
+
+
+    <h2 id="merge-sort">Merge Sort</h2>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> dart 05_recursion/merge_sort.dart
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-dart" data-lang="dart"><span class="kn">import</span> <span class="s">'dart:io'</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Array</span> <span class="o">{</span>
+  <span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">array</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">numberOfElements</span><span class="o">;</span>
+
+  <span class="n">Array</span><span class="o">(</span><span class="kt">int</span> <span class="n">max</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;(</span><span class="n">max</span><span class="o">);</span>
+    <span class="n">numberOfElements</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">insert</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">array</span><span class="o">[</span><span class="n">numberOfElements</span><span class="o">]</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+    <span class="n">numberOfElements</span> <span class="o">++;</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">display</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numberOfElements</span><span class="o">;</span> <span class="n">i</span> <span class="o">++)</span> <span class="o">{</span>
+      <span class="n">stdout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">'</span><span class="si">${array[i]}</span><span class="s"> '</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">mergeSort</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">workSpace</span> <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;(</span><span class="n">numberOfElements</span><span class="o">);</span>
+    <span class="n">_recursiveMergeSort</span><span class="o">(</span><span class="n">workSpace</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">numberOfElements</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">_recursiveMergeSort</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">workSpace</span><span class="o">,</span> <span class="kt">int</span> <span class="n">lowerBound</span><span class="o">,</span> <span class="kt">int</span> <span class="n">upperBound</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">lowerBound</span> <span class="o">==</span> <span class="n">upperBound</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">lowerBound</span> <span class="o">+</span> <span class="n">upperBound</span><span class="o">)</span> <span class="o">~/</span> <span class="mi">2</span><span class="o">;</span>
+      <span class="n">_recursiveMergeSort</span><span class="o">(</span><span class="n">workSpace</span><span class="o">,</span> <span class="n">lowerBound</span><span class="o">,</span> <span class="n">mid</span><span class="o">);</span>
+      <span class="n">_recursiveMergeSort</span><span class="o">(</span><span class="n">workSpace</span><span class="o">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">upperBound</span><span class="o">);</span>
+      <span class="n">_merge</span><span class="o">(</span><span class="n">workSpace</span><span class="o">,</span> <span class="n">lowerBound</span><span class="o">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">upperBound</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">_merge</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">workSpace</span><span class="o">,</span> <span class="kt">int</span> <span class="n">lowPtr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">highPtr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">upperBound</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">lowerBound</span> <span class="o">=</span> <span class="n">lowPtr</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">highPtr</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">upperBound</span> <span class="o">-</span> <span class="n">lowerBound</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+
+    <span class="k">while</span> <span class="o">(</span><span class="n">lowPtr</span> <span class="o">&lt;=</span> <span class="n">mid</span> <span class="o">&amp;&amp;</span> <span class="n">highPtr</span> <span class="o">&lt;=</span> <span class="n">upperBound</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">lowPtr</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">[</span><span class="n">highPtr</span><span class="o">])</span> <span class="o">{</span>
+        <span class="n">workSpace</span><span class="o">[</span><span class="n">i</span><span class="o">++]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">lowPtr</span><span class="o">++];</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">workSpace</span><span class="o">[</span><span class="n">i</span><span class="o">++]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">highPtr</span><span class="o">++];</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="k">while</span> <span class="o">(</span><span class="n">lowPtr</span> <span class="o">&lt;=</span> <span class="n">mid</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">workSpace</span><span class="o">[</span><span class="n">i</span><span class="o">++]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">lowPtr</span><span class="o">++];</span>
+    <span class="o">}</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">highPtr</span> <span class="o">&lt;=</span> <span class="n">upperBound</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">workSpace</span><span class="o">[</span><span class="n">i</span><span class="o">++]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">highPtr</span><span class="o">++];</span>
+    <span class="o">}</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span> <span class="o">++)</span> <span class="o">{</span>
+      <span class="n">array</span><span class="o">[</span><span class="n">lowerBound</span> <span class="o">+</span> <span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">workSpace</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">maxSize</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
+  <span class="n">Array</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Array</span><span class="o">(</span><span class="n">maxSize</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">64</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">21</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">33</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">70</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">12</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">85</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">44</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">99</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">108</span><span class="o">);</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">36</span><span class="o">);</span>
+
+  <span class="n">array</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
+
+  <span class="n">array</span><span class="o">.</span><span class="na">mergeSort</span><span class="o">();</span>
+  <span class="n">array</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+
+  </div>
+</article>
+
+    </div>
+
+    <footer class="c-footer">
+  <div class="c-footer__container">
+    <div class="footer-copyright">
+      <span>Created by <a href="https://github.com/artem-galas">Artem Galas</a></span>
+    </div>
+  </div>
+</footer>
+
+  </div>
+</body>
+</html>

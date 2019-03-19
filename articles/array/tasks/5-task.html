@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="t-">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Array | Task 5</title>
+  <meta name="description" content="Array | Task 5">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="/articles/array/tasks/5-task">
+</head>
+
+<body>
+  <div class="main-container">
+    <nav class="mat-toolbar">
+  <div class="mat-toolbar-row">
+    <div class="navigation-menu">
+      <ul>
+        <li>
+          <a class="nav-link "
+             href="/">
+            <span class="nav-link-inner">Home</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/articles/">
+            <span class="nav-link-inner">Articles</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/about/">
+            <span class="nav-link-inner">About</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="main-container-inner">
+      <article class="c-article">
+  <header class="c-header c-article__header">
+    <h1 class="c-header__title">Array | Task 5</h1>
+  </header>
+
+  <div class="c-article__main">
+    
+<nav id="subnav">
+  <ul>
+    
+    <li class="previous">
+        <a href="4-task">Tasks 4</a>
+    </li>
+    
+    
+    <li class="next">
+        <a href="6-task">Task 6</a>
+    </li>
+    
+  </ul>
+</nav>
+
+
+    <h2 id="array--task-5">Array | Task 5</h2>
+
+<p>Add a <code class="highlighter-rouge">merge()</code> method to the <code class="highlighter-rouge">OrderedArray</code> class in the <a href="/articles/array/3-ordered-array">OrderedArray</a>
+program so that you can merge two ordered source arrays into an ordered destination array.</p>
+
+<p>Write code in <code class="highlighter-rouge">main()</code> that inserts some random
+numbers into the two source arrays, invokes <code class="highlighter-rouge">merge()</code>, and displays the contents of the resulting destination array.</p>
+
+<p>The source arrays may hold different numbers of data items.</p>
+
+<p>In your algorithm you will need to compare the keys of
+the source arrays, picking the smallest one to copy to the destination.</p>
+
+<p>You’ll also need to handle the situation when one source array exhausts its contents before the other.</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> dart 01_array/tasks/task_5.dart
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-dart" data-lang="dart"><span class="c1">/// Add a merge() method to the `OrderedArray` class in the `ordered_array.dart`</span>
+<span class="c1">/// program so that you can merge two ordered source arrays into an ordered destination array.</span>
+<span class="c1">/// Write code in main() that inserts some random</span>
+<span class="c1">/// numbers into the two source arrays, invokes merge(), and displays the contents of the resulting destination array.</span>
+<span class="c1">/// The source arrays may hold different numbers of data items.</span>
+<span class="c1">/// In your algorithm you will need to compare the keys of</span>
+<span class="c1">/// the source arrays, picking the smallest one to copy to the destination.</span>
+<span class="c1">/// You’ll also need to handle the situation when one source array exhausts its contents before the other.</span>
+
+<span class="kn">import</span> <span class="s">'dart:io'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'dart:math'</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="s">'../ordered_array.dart'</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">OrderedArrayTask5</span> <span class="kd">extends</span> <span class="n">OrderedArray</span> <span class="o">{</span>
+
+  <span class="n">OrderedArrayTask5</span><span class="o">(</span><span class="kt">int</span> <span class="n">max</span><span class="o">)</span>
+      <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="n">max</span><span class="o">);</span>
+
+  <span class="kt">int</span> <span class="n">getValueAt</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">setValueAt</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">a</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">static</span> <span class="n">OrderedArrayTask5</span> <span class="n">merge</span><span class="o">(</span><span class="n">OrderedArrayTask5</span> <span class="n">source_one</span><span class="o">,</span> <span class="n">OrderedArrayTask5</span> <span class="n">source_two</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">source_one</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">+</span> <span class="n">source_two</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+
+    <span class="n">OrderedArrayTask5</span> <span class="n">destination</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OrderedArrayTask5</span><span class="o">(</span><span class="n">length</span><span class="o">);</span>
+
+    <span class="c1">// initialize indexes for source_one, source_two and destination</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">source_one</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">source_two</span><span class="o">.</span><span class="na">size</span><span class="o">())</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">source_one</span><span class="o">.</span><span class="na">getValueAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">&lt;=</span> <span class="n">source_two</span><span class="o">.</span><span class="na">getValueAt</span><span class="o">(</span><span class="n">j</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">destination</span><span class="o">.</span><span class="na">setValueAt</span><span class="o">(</span><span class="n">k</span><span class="o">,</span> <span class="n">source_one</span><span class="o">.</span><span class="na">getValueAt</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+        <span class="n">i</span> <span class="o">++;</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">destination</span><span class="o">.</span><span class="na">setValueAt</span><span class="o">(</span><span class="n">k</span><span class="o">,</span> <span class="n">source_two</span><span class="o">.</span><span class="na">getValueAt</span><span class="o">(</span><span class="n">j</span><span class="o">));</span>
+        <span class="n">j</span> <span class="o">++;</span>
+      <span class="o">}</span>
+      <span class="n">destination</span><span class="o">.</span><span class="na">nElems</span> <span class="o">++;</span>
+      <span class="n">k</span> <span class="o">++;</span>
+    <span class="o">}</span>
+
+    <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">source_one</span><span class="o">.</span><span class="na">size</span><span class="o">())</span> <span class="o">{</span>
+      <span class="n">destination</span><span class="o">.</span><span class="na">setValueAt</span><span class="o">(</span><span class="n">k</span><span class="o">,</span> <span class="n">source_one</span><span class="o">.</span><span class="na">getValueAt</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+      <span class="n">destination</span><span class="o">.</span><span class="na">nElems</span> <span class="o">++;</span>
+      <span class="n">k</span> <span class="o">++;</span>
+      <span class="n">j</span> <span class="o">++;</span>
+      <span class="n">i</span> <span class="o">++;</span>
+    <span class="o">}</span>
+
+    <span class="k">while</span> <span class="o">(</span><span class="n">j</span> <span class="o">&lt;</span> <span class="n">source_two</span><span class="o">.</span><span class="na">size</span><span class="o">())</span> <span class="o">{</span>
+      <span class="n">destination</span><span class="o">.</span><span class="na">setValueAt</span><span class="o">(</span><span class="n">k</span><span class="o">,</span> <span class="n">source_two</span><span class="o">.</span><span class="na">getValueAt</span><span class="o">(</span><span class="n">j</span><span class="o">));</span>
+      <span class="n">destination</span><span class="o">.</span><span class="na">nElems</span> <span class="o">++;</span>
+      <span class="n">k</span> <span class="o">++;</span>
+      <span class="n">j</span> <span class="o">++;</span>
+      <span class="n">i</span> <span class="o">++;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">destination</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="o">();</span>
+
+  <span class="kd">final</span> <span class="kt">int</span> <span class="n">maxArraySize</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+  <span class="n">OrderedArrayTask5</span> <span class="n">source_one</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OrderedArrayTask5</span><span class="o">(</span><span class="n">maxArraySize</span><span class="o">);</span>
+  <span class="n">OrderedArrayTask5</span> <span class="n">source_two</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OrderedArrayTask5</span><span class="o">(</span><span class="n">maxArraySize</span><span class="o">);</span>
+
+  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">maxArraySize</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">++)</span> <span class="o">{</span>
+    <span class="n">source_one</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">100</span><span class="o">));</span>
+    <span class="n">source_two</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">100</span><span class="o">));</span>
+  <span class="o">}</span>
+
+  <span class="n">stdout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">'source_one = '</span><span class="o">);</span>
+  <span class="n">source_one</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
+  <span class="n">stdout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">'source_two = '</span><span class="o">);</span>
+  <span class="n">source_two</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
+
+  <span class="n">OrderedArrayTask5</span> <span class="n">destination</span> <span class="o">=</span> <span class="n">OrderedArrayTask5</span><span class="o">.</span><span class="na">merge</span><span class="o">(</span><span class="n">source_one</span><span class="o">,</span> <span class="n">source_two</span><span class="o">);</span>
+
+  <span class="n">stdout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">'destination = '</span><span class="o">);</span>
+  <span class="n">destination</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+
+  </div>
+</article>
+
+    </div>
+
+    <footer class="c-footer">
+  <div class="c-footer__container">
+    <div class="footer-copyright">
+      <span>Created by <a href="https://github.com/artem-galas">Artem Galas</a></span>
+    </div>
+  </div>
+</footer>
+
+  </div>
+</body>
+</html>

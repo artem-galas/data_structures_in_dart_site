@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="t-">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>First Last List</title>
+  <meta name="description" content="First Last List">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="/articles/linked-list/3-first_last_list">
+</head>
+
+<body>
+  <div class="main-container">
+    <nav class="mat-toolbar">
+  <div class="mat-toolbar-row">
+    <div class="navigation-menu">
+      <ul>
+        <li>
+          <a class="nav-link "
+             href="/">
+            <span class="nav-link-inner">Home</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/articles/">
+            <span class="nav-link-inner">Articles</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link "
+             href="/about/">
+            <span class="nav-link-inner">About</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="main-container-inner">
+      <article class="c-article">
+  <header class="c-header c-article__header">
+    <h1 class="c-header__title">First Last List</h1>
+  </header>
+
+  <div class="c-article__main">
+    
+<nav id="subnav">
+  <ul>
+    
+    <li class="previous">
+        <a href="2-linked_list">Linked List</a>
+    </li>
+    
+    
+    <li class="next">
+        <a href="4-link_stack_list">Link Stack List</a>
+    </li>
+    
+  </ul>
+</nav>
+
+
+    <h2 id="first-last-list">First Last List</h2>
+
+<p>A double-ended list is similar to an ordinary linked list, but it has one additional feature: <strong>a reference to the last link</strong> as well as <strong>to the first</strong>.</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> dart 04_linked_list/first_last_list.dart
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-dart" data-lang="dart"><span class="kn">import</span> <span class="s">'dart:io'</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Link</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">intData</span><span class="o">;</span>
+  <span class="n">Link</span> <span class="n">next</span><span class="o">;</span>
+
+  <span class="n">Link</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">intData</span><span class="o">)</span> <span class="o">{}</span>
+
+  <span class="kt">void</span> <span class="n">displayLink</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">stdout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">'</span><span class="si">$intData</span><span class="s"> '</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">FirstLastList</span> <span class="o">{</span>
+  <span class="n">Link</span> <span class="n">first</span><span class="o">;</span>
+  <span class="n">Link</span> <span class="n">last</span><span class="o">;</span>
+
+  <span class="n">FirstLastList</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">first</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="n">last</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">bool</span> <span class="n">isEmpty</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">first</span> <span class="o">==</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">insertFirst</span><span class="o">(</span><span class="kt">int</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Link</span> <span class="n">newLink</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Link</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+      <span class="n">last</span> <span class="o">=</span> <span class="n">newLink</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">newLink</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">first</span><span class="o">;</span>
+    <span class="n">first</span> <span class="o">=</span> <span class="n">newLink</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">insertLast</span><span class="o">(</span><span class="kt">int</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Link</span> <span class="n">newLink</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Link</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+      <span class="n">first</span> <span class="o">=</span> <span class="n">newLink</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="n">last</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newLink</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">last</span> <span class="o">=</span> <span class="n">newLink</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">int</span> <span class="n">deleteFirst</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">first</span><span class="o">.</span><span class="na">intData</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">first</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">last</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">first</span> <span class="o">=</span> <span class="n">first</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+    <span class="k">return</span> <span class="n">temp</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">displayList</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">stdout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">'List (first -&gt; last): '</span><span class="o">);</span>
+    <span class="n">Link</span> <span class="n">current</span> <span class="o">=</span> <span class="n">first</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">current</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">current</span><span class="o">.</span><span class="na">displayLink</span><span class="o">();</span>
+      <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">stdout</span><span class="o">.</span><span class="na">writeln</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">FirstLastList</span> <span class="n">firstLastList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FirstLastList</span><span class="o">();</span>
+
+  <span class="n">firstLastList</span><span class="o">.</span><span class="na">insertFirst</span><span class="o">(</span><span class="mi">22</span><span class="o">);</span>
+  <span class="n">firstLastList</span><span class="o">.</span><span class="na">insertFirst</span><span class="o">(</span><span class="mi">44</span><span class="o">);</span>
+  <span class="n">firstLastList</span><span class="o">.</span><span class="na">insertFirst</span><span class="o">(</span><span class="mi">66</span><span class="o">);</span>
+
+  <span class="n">firstLastList</span><span class="o">.</span><span class="na">insertLast</span><span class="o">(</span><span class="mi">11</span><span class="o">);</span>
+  <span class="n">firstLastList</span><span class="o">.</span><span class="na">insertLast</span><span class="o">(</span><span class="mi">33</span><span class="o">);</span>
+  <span class="n">firstLastList</span><span class="o">.</span><span class="na">insertLast</span><span class="o">(</span><span class="mi">55</span><span class="o">);</span>
+
+  <span class="n">firstLastList</span><span class="o">.</span><span class="na">displayList</span><span class="o">();</span>
+
+  <span class="n">firstLastList</span><span class="o">.</span><span class="na">deleteFirst</span><span class="o">();</span>
+  <span class="n">firstLastList</span><span class="o">.</span><span class="na">deleteFirst</span><span class="o">();</span>
+
+  <span class="n">firstLastList</span><span class="o">.</span><span class="na">displayList</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+
+  </div>
+</article>
+
+    </div>
+
+    <footer class="c-footer">
+  <div class="c-footer__container">
+    <div class="footer-copyright">
+      <span>Created by <a href="https://github.com/artem-galas">Artem Galas</a></span>
+    </div>
+  </div>
+</footer>
+
+  </div>
+</body>
+</html>
